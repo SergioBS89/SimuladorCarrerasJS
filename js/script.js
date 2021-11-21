@@ -226,3 +226,28 @@ function sleep(ms) {
 formularioJuego.addEventListener('submit', empezarPreventDefault);
 
 formularioJuego.addEventListener('reset', reiniciarPreventDefault);
+
+
+
+
+// Animacion inicio
+
+let semaforo = document.getElementById('animacionSemaforo')
+let botonGo = document.getElementById('botonGO')
+let botonComezar = document.getElementById('botonComenzar')
+let botonReiniciar = document.getElementById('reset-btn')
+
+botonComezar.addEventListener('click',()=>{
+  botonComezar.classList.add('hidden')
+  semaforo.classList.remove('hiddenSemaforo')
+  setTimeout(() => botonGo.classList.remove('hidden'),4000)
+  setTimeout(() => semaforo.classList.add('hiddenSemaforo'),4000)
+  botonGo.addEventListener('click',()=>{
+    botonGo.classList.add('hidden')
+  })
+})
+botonReiniciar.addEventListener('click',()=>{
+  botonComezar.classList.remove('hidden')
+})
+
+

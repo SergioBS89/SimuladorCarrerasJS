@@ -144,10 +144,182 @@ body {
 }
 .botonJuego{
 font-size: 12px;
-border-radius: 25%;
+border-radius: 20%;
 border: none;
 padding: 10px;
 font-family: fantasy;
+position: absolute;
+top: 50px;
+right: 50%;
+transform:translateX(50%);
 
+}
+
+/* ANIMACION PARA SEMAFORO */
+
+/* Semáforo CSS vertical */
+
+.semaforo-position{
+position: absolute;
+right: 50%;
+bottom: 20%;
+transform: translateX(50%);
+z-index: 10;
+}
+
+.hiddenSemaforo{
+  display: none;
+}
+
+ul.semaforo {
+  z-index: 9;
+  float:left;
+  position: relative;
+  width: 100px;
+  margin: 0 50px;
+  padding: 15px;
+  list-style-type: none;
+  border: 6px double grey;
+  background: black;
+  background: linear-gradient( -90deg, #45484d 0%, #000000 100%);
+  border-radius: 20%;
+  box-shadow: 0px 0px 0 20px rgba(0,0,0,.8);
+  
+  }
+  ul.semaforo li {
+  position:relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: lightgrey;
+  margin: 10px 0;
+  background: linear-gradient(top, rgba(187,187,187,1) 0%,rgba(119,119,119,1) 99%);
+  box-shadow: inset 0 -5px 15px rgba(255,255,255,0.4),
+  inset -2px -1px 40px rgba(0,0,0,0.4),
+  0 0 1px #000;
+  }
+  ul.semaforo li:after {
+  content: "";
+  width: 60px;
+  height: 30px;
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  box-shadow: 0px 0 20px 35px rgba(20,20,20,.1);
+  border-radius: 30px / 15px;
+  }
+  .verde li:nth-of-type(1) {
+  
+    animation: cambioColores 1s 1s forwards;
+  }
+  .verde li:nth-of-type(2) {
+  
+    animation: cambioColores2 1s 2s forwards  1;
+  }
+  .verde li:nth-of-type(3) {
+   
+    animation: cambioColores3 1s 3s forwards 1;
+  }
+
+  @keyframes cambioColores{
+    to{
+     background-color: red;}
+}
+@keyframes cambioColores2{
+  to{
+   background-color: red;}
+}
+ @keyframes cambioColores3{
+  to{
+   background-color: red;}
+}
+@keyframes botonGo{
+  to{
+    display: block;
+  }
+}
+
+.positionBotonGO{
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+  z-index: 10;
+  transform: translateX(50%);
+  animation:botonGo 1s 4s forwards 1;
+}
+.hidden{
+  display: none;
+}
+/* BOTON GO */
+.push_button {
+	position: relative;
+	width:420px;
+	height:100px;
+	text-align:center;
+	color:#FFF;
+	text-decoration:none;
+	line-height:43px;
+	font-family:'Oswald', Helvetica;
+	display: block;
+	margin: 30px;
+  font-size: 50px;
+ 
+}
+.push_button:before {
+	background:#f0f0f0;
+	background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#D0D0D0), to(#f0f0f0));
+	
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	
+	-webkit-box-shadow:0 1px 2px rgba(0, 0, 0, .5) inset, 0 1px 0 #FFF; 
+	-moz-box-shadow:0 1px 2px rgba(0, 0, 0, .5) inset, 0 1px 0 #FFF; 
+	box-shadow:0 1px 2px rgba(0, 0, 0, .5) inset, 0 1px 0 #FFF;
+	
+	position: absolute;
+	content: "";
+	left: -6px; right: -6px;
+	top: -6px; bottom: -10px;
+	z-index: -1;
+}
+
+.push_button:active {
+	-webkit-box-shadow:0 1px 0 rgba(255, 255, 255, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset;
+	top:5px;
+}
+.push_button:active:before{
+	top: -11px;
+	bottom: -5px;
+	content: "";
+}
+
+.red {
+	text-shadow:-1px -1px 0 #A84155;
+	background: #f00606;
+	border:1px solid #ce0101;
+	
+	background-image:-webkit-linear-gradient(top, #fa001d, #da314f);
+	background-image:-moz-linear-gradient(top, #f70421, #b4253f);
+	background-image:-ms-linear-gradient(top, #f1021e, #bb2440);
+	background-image:-o-linear-gradient(top, #e6031e, #b82640);
+	background-image:linear-gradient(to bottom, #e4021c, #a3223a);
+	
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	
+	-webkit-box-shadow:0 1px 0 rgba(255, 255, 255, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset, 0 4px 0 #AD4257, 0 4px 2px rgba(0, 0, 0, .5);
+	-moz-box-shadow:0 1px 0 rgba(255, 255, 255, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset, 0 4px 0 #AD4257, 0 4px 2px rgba(0, 0, 0, .5);
+	box-shadow:0 1px 0 rgba(255, 255, 255, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset, 0 4px 0 #AD4257, 0 4px 2px rgba(0, 0, 0, .5);
+}
+
+.red:hover {
+	background: #F66C7B;
+	background-image:-webkit-linear-gradient(top, #D25068, #F66C7B);
+	background-image:-moz-linear-gradient(top, #D25068, #F66C7B);
+	background-image:-ms-linear-gradient(top, #D25068, #F66C7B);
+	background-image:-o-linear-gradient(top, #D25068, #F66C7B);
+	background-image:linear-gradient(top, #D25068, #F66C7B);
 }
 

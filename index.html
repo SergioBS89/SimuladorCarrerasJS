@@ -8,16 +8,23 @@
 </head>
 <body>
     <!-- ANIMACION PARA EMPEZAR -->
-    <div>
+    <div id="animacionSemaforo"  class="semaforo-position hiddenSemaforo">
+      <ul class="semaforo verde">
+        <li></li>
+        <li></li>
+        <li></li>
+        </ul>
+       
       
     </div>
+   
     
-    <!-- FORMULARIO PARA SELECCIONAR NUMERO DE PILOTOS -->
+    <!-- FORMULARIO PARA SELECCIONAR NUMERO DE PILOTOS-->
     <form id="formularioJuego" action="#">
-        <div>
+        <div style="width: 300px;">
           <label for="formularioJuego">Numero de pilotos</label>
   
-          <!-- Step 1 -->
+        
           <select name="players" id="numJugadoresSelect">
             <option value="1">One</option>
             <option value="2" selected>Two</option>
@@ -33,22 +40,25 @@
   
         <div>
           <label for="puntosParaGanar">Puntos para ganar</label>  
-          <!-- Step 4 -->
+         
           <input type="number" name="score-to-win" id="puntosParaGanar" value="100" min="1" max="100" />
         </div>
   
-        <!-- Step 6 -->
-        <button class="botonJuego" id="submit-btn" type="submit">COMENZAR</button>  
+        
+        <div id="botonGO"  class="positionBotonGO hidden">
+          <button class="push_button red " id="submit-btn" type="submit">GO!</button>  
+        </div>
         <button class="botonJuego" id="reset-btn" type="reset" hidden>REINICIAR</button>
      </form>
+     <button class="botonJuego " id="botonComenzar">COMENZAR</button>
   
-      <!-- Parrilla de los coches-->
+      <!-- Parrilla de los coches -->
       <ul id="parrillaJuego">
-        <!-- Generated with JavaScript -->
+       
       </ul>
   
       <!-- Resultados de juego-->
-      <table id="resultadoJuego" hidden>
+     <table id="resultadoJuego" hidden>
         <thead>
           <tr>
             <th>Piloto</th>
@@ -57,10 +67,10 @@
         </thead>
   
         <tbody>
-          <!-- Generated with JavaScript -->
+       
         </tbody>
-      </table>
+      </table> -->
   
-      <script src="js/script.js" defer></script>
+      <script src="js/script.js" defer></script> 
 </body>
 </html>
