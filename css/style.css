@@ -1,0 +1,153 @@
+/* --- General --- */
+
+@import url('https://rsms.me/inter/inter.css');
+
+html {
+  box-sizing: border-box;
+
+  font-family: 'Inter', sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: 'Inter var', sans-serif;
+  }
+}
+
+
+body {
+  background: url(../img/carrera.jpg);
+  background-size: cover;
+
+  padding: 1em 2em;
+}
+
+/* --- Specific --- */
+
+/* - Game form - */
+
+#formularioJuego{
+  display: flex;
+  flex-direction: row;
+
+  gap: 0em 1em;
+
+  max-width: fit-content;
+
+  padding: 1em;
+
+  background-color: rgba(84, 143, 252, 0.719);
+
+  margin: auto;
+  color: rgb(255, 255, 255);
+}
+
+#formularioJuego label {
+  font-weight: 700;
+}
+
+#numJugadoresSelect,
+#puntosParaGanar {
+  display: block;
+  margin-top: 0.75em;
+}
+
+/* - Game table - */
+
+#parrillaJuego {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+#parrillaJuego > * + * {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.contenedor-coches {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  height: 4em;
+
+  background-color: rgb(255, 255, 255);
+
+  border: 2px solid #00702f;
+}
+
+.contenedor-coches > label {
+  padding: 0.5em;
+}
+
+.carril {
+  flex-grow: 1;
+
+  position: relative;
+
+  height: 100%;
+
+  background-image: url('../img/road.png');
+  background-size: contain;
+  background-repeat: repeat-x;
+}
+
+.coche {
+  z-index: 1;
+
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+
+  width: 8em;
+  height: auto;
+}
+
+.linea-meta {
+  /* The trick to making the car move to the finish line is having the same width */
+  width: 8em;
+  height: 100%;
+
+  background-image: url('../img/finish-line.png');
+  background-size: cover;
+}
+
+/* - Game output - */
+
+#resultadoJuego{
+  border-collapse: collapse;
+  width: 40%;
+
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  margin: auto;
+  color: rgb(0, 0, 0);
+
+}
+
+#resultadoJuego > thead > tr > th {
+  background-color: rgba(26, 76, 170, 0.808);
+
+  width: auto;
+}
+
+#resultadoJuego > tbody > tr > td {
+  text-align: center;
+
+  border-bottom: 1px solid black;
+}
+
+#resultadoJuego > thead > tr > th,
+#resultadoJuego > tbody > tr > td {
+  padding: 0.5em 1.5em;
+}
+.botonJuego{
+font-size: 12px;
+border-radius: 25%;
+border: none;
+padding: 10px;
+font-family: fantasy;
+
+}
+
