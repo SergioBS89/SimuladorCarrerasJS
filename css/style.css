@@ -1,164 +1,145 @@
-/* --- General --- */
 
-@import url('https://rsms.me/inter/inter.css');
+/* ESTILOS GENERALES */
 
 html {
-  box-sizing: border-box;
-
-  font-family: 'Inter', sans-serif;
+box-sizing: border-box;
+font-family: 'Inter', sans-serif;
 }
-
-@supports (font-variation-settings: normal) {
-  html {
-    font-family: 'Inter var', sans-serif;
-  }
-}
-
 
 body {
-  background: url(../img/carrera.jpg);
-  background-size: cover;
+background: url(../img/carrera.jpg);
+background-size: cover;
+padding: 1em 2em;
+}
+/* Cambia los estilos de las fuentes para una mejor lectura */
+@import url('https://rsms.me/inter/inter.css');
 
-  padding: 1em 2em;
+/* ESTILOS FORMULARIO INICIO CARRERA */
+
+.formularioJuego{
+display: flex;
+flex-direction: row;
+gap: 0em 1em;
+max-width: fit-content;
+padding: 1em;
+background-color: rgba(84, 143, 252, 0.719);
+margin: auto;
+border-radius: 10px;
 }
 
-/* --- Specific --- */
-
-/* - Game form - */
-
-#formularioJuego{
-  display: flex;
-  flex-direction: row;
-
-  gap: 0em 1em;
-
-  max-width: fit-content;
-
-  padding: 1em;
-
-  background-color: rgba(84, 143, 252, 0.719);
-
-  margin: auto;
-  color: rgb(255, 255, 255);
-}
-
-#formularioJuego label {
+.formularioJuego label {
+  color: #000;
   font-weight: 700;
 }
-
-#numJugadoresSelect,
-#puntosParaGanar {
-  display: block;
-  margin-top: 0.75em;
+.formularioJuego select{
+background-color: #000000;
+color: red;
+border-radius: 5px;
+margin-left: 50px;
+}
+.formularioJuego input{
+background-color: #000000;
+color: red;
+border-radius: 5px;
+margin-left: 30px;
+}
+.option{
+color: red;
+background-color: #000;
+}
+.numJugadoresSelect,
+.puntosParaGanar {
+display: block;
+margin-top: 0.75em;
 }
 
-/* - Game table - */
-
-#parrillaJuego {
-  list-style: none;
-  margin-left: 0;
-  padding-left: 0;
-}
-
-#parrillaJuego > * + * {
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
-.contenedor-coches {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  height: 4em;
-
-  background-color: rgb(255, 255, 255);
-
-  border: 2px solid #00702f;
-}
-
-.contenedor-coches > label {
-  padding: 0.5em;
-}
-
-.carril {
-  flex-grow: 1;
-
-  position: relative;
-
-  height: 100%;
-
-  background-image: url('../img/road.png');
-  background-size: contain;
-  background-repeat: repeat-x;
-}
-
-.coche {
-  z-index: 1;
-
-  position: absolute;
-  top: 0%;
-  bottom: 0%;
-
-  width: 8em;
-  height: auto;
-}
-
-.linea-meta {
-  /* The trick to making the car move to the finish line is having the same width */
-  width: 8em;
-  height: 100%;
-
-  background-image: url('../img/finish-line.png');
-  background-size: cover;
-}
-
-/* - Game output - */
-
-#resultadoJuego{
-  border-collapse: collapse;
-  width: 40%;
-
-  background-color: rgb(255, 255, 255);
-  border-radius: 5px;
-  margin: auto;
-  color: rgb(0, 0, 0);
-
-}
-
-#resultadoJuego > thead > tr > th {
-  background-color: rgba(26, 76, 170, 0.808);
-
-  width: auto;
-}
-
-#resultadoJuego > tbody > tr > td {
-  text-align: center;
-
-  border-bottom: 1px solid black;
-}
-
-#resultadoJuego > thead > tr > th,
-#resultadoJuego > tbody > tr > td {
-  padding: 0.5em 1.5em;
-}
+/* BOTONES DE COMENZAR - REINICIAR */
 .botonJuego{
-font-size: 12px;
-border-radius: 20%;
+font-size: 15px;
+border-radius: 50%;
 border: none;
-padding: 10px;
-font-family: fantasy;
+padding: 20px;
+font-family: 'Gill Sans';
 position: absolute;
-top: 50px;
+top: 36px;
 right: 50%;
 transform:translateX(50%);
-
+color: red;
+background-color: #000;
+cursor: pointer;
 }
 
-/* ANIMACION PARA SEMAFORO */
+/*ESTILOS DE LA PARRILLA DE JUEGO*/
 
-/* Semáforo CSS vertical */
+.parrillaJuego {
+list-style: none;
+margin-left: 0;
+padding-left: 0;
+}
+.parrillaJuego > * + * {
+margin-top: 0;  
+}
+.contenedor-coches {
+display: flex;
+flex-direction: row;
+align-items: center;
+width: 99%;
+height: 4em;
+background-color: rgb(3, 3, 3);
+border: 2px solid #706500;
+}
+.contenedor-coches > label {
+padding: 0.5em;
+color: red;
+font-family: 'Gill Sans';
+}
+.carril {
+flex-grow: 1;
+position: relative;
+height: 100%;
+background-image: url('../img/carretera.jpg');
+background-size: contain;
+background-repeat: repeat-x;
+}
+.coche {
+z-index: 1;
+position: absolute;
+top: 0%;
+bottom: 0%;
+width: 6em;
+height: auto;
+}
+.linea-meta {  
+width: 3em;
+height: 100%;
+background-image: url('../img/linae\ de\ meta.jpg');
+background-size: cover;
+}
 
+/*ESTILOS TABLA DE RESULTADOS*/
+
+.resultadoJuego{
+border-collapse: collapse;
+width: 40%;
+background-color: rgb(255, 255, 255);
+border-radius: 5px;
+margin: auto;
+color: rgb(0, 0, 0);
+}
+.resultadoJuego > thead > tr > th {
+background-color: rgba(26, 76, 170, 0.808);
+width: auto;
+}
+.resultadoJuego > tbody > tr > td {
+text-align: center;
+border-bottom: 1px solid black;
+}
+.resultadoJuego > thead > tr > th,
+.resultadoJuego > tbody > tr > td {
+  padding: 0.5em 1.5em;
+}
+
+/* POSICION DEL SEMAFORO */
 .semaforo-position{
 position: absolute;
 right: 50%;
@@ -166,62 +147,61 @@ bottom: 20%;
 transform: translateX(50%);
 z-index: 10;
 }
-
 .hiddenSemaforo{
-  display: none;
+display: none;
 }
 
-ul.semaforo {
-  z-index: 9;
-  float:left;
-  position: relative;
-  width: 100px;
-  margin: 0 50px;
-  padding: 15px;
-  list-style-type: none;
-  border: 6px double grey;
-  background: black;
-  background: linear-gradient( -90deg, #45484d 0%, #000000 100%);
-  border-radius: 20%;
-  box-shadow: 0px 0px 0 20px rgba(0,0,0,.8);
-  
-  }
-  ul.semaforo li {
-  position:relative;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: lightgrey;
-  margin: 10px 0;
-  background: linear-gradient(top, rgba(187,187,187,1) 0%,rgba(119,119,119,1) 99%);
-  box-shadow: inset 0 -5px 15px rgba(255,255,255,0.4),
-  inset -2px -1px 40px rgba(0,0,0,0.4),
-  0 0 1px #000;
-  }
-  ul.semaforo li:after {
-  content: "";
-  width: 60px;
-  height: 30px;
-  position: absolute;
-  left: 20px;
-  top: 10px;
-  box-shadow: 0px 0 20px 35px rgba(20,20,20,.1);
-  border-radius: 30px / 15px;
-  }
-  .verde li:nth-of-type(1) {
-  
-    animation: cambioColores 1s 1s forwards;
-  }
-  .verde li:nth-of-type(2) {
-  
-    animation: cambioColores2 1s 2s forwards  1;
-  }
-  .verde li:nth-of-type(3) {
-   
-    animation: cambioColores3 1s 3s forwards 1;
-  }
+/* ESTILOS SEMAFORO  */
 
-  @keyframes cambioColores{
+ul.semaforo {
+z-index: 9;
+float:left;
+position: relative;
+width: 100px;
+margin: 0 50px;
+padding: 15px;
+list-style-type: none;
+border: 6px double grey;
+background: black;
+background: linear-gradient( -90deg, #45484d 0%, #000000 100%);
+border-radius: 20%;
+box-shadow: 0px 0px 0 20px rgba(0,0,0,.8);  
+}
+ul.semaforo li {
+position:relative;
+width: 100px;
+height: 100px;
+border-radius: 50%;
+background: lightgrey;
+margin: 10px 0;
+background: linear-gradient(top, rgba(187,187,187,1) 0%,rgba(119,119,119,1) 99%);
+box-shadow: inset 0 -5px 15px rgba(255,255,255,0.4),
+inset -2px -1px 40px rgba(0,0,0,0.4),
+0 0 1px #000;
+}
+ul.semaforo li:after {
+content: "";
+width: 60px;
+height: 30px;
+position: absolute;
+left: 20px;
+top: 10px;
+box-shadow: 0px 0 20px 35px rgba(20,20,20,.1);
+border-radius: 30px / 15px;
+}
+/* LAS TRES LUCES DEL SEMAFORO  */
+.verde li:nth-of-type(1) {
+animation: cambioColores 1s 1s forwards;
+}
+.verde li:nth-of-type(2) {
+animation: cambioColores2 1s 2s forwards  1;
+}
+.verde li:nth-of-type(3) { 
+animation: cambioColores3 1s 3s forwards 1;
+}
+
+/* ANIMACION DEL SEMAFORO */
+@keyframes cambioColores{
     to{
      background-color: red;}
 }
@@ -233,55 +213,51 @@ ul.semaforo {
   to{
    background-color: red;}
 }
-@keyframes botonGo{
-  to{
-    display: block;
-  }
-}
 
+/* POSICION DEL BOTON GO */
 .positionBotonGO{
-  position: absolute;
-  bottom: 50%;
-  right: 50%;
-  z-index: 10;
-  transform: translateX(50%);
-  animation:botonGo 1s 4s forwards 1;
+position: absolute;
+bottom: 50%;
+right: 50%;
+z-index: 10;
+transform: translateX(50%);
 }
+/* Ocultar elementos */
 .hidden{
   display: none;
 }
-/* BOTON GO */
+
+/*ESTILOS DEL BOTON GO */
 .push_button {
-	position: relative;
-	width:420px;
-	height:100px;
-	text-align:center;
-	color:#FFF;
-	text-decoration:none;
-	line-height:43px;
-	font-family:'Oswald', Helvetica;
-	display: block;
-	margin: 30px;
-  font-size: 50px;
- 
+position: relative;
+width:420px;
+height:100px;
+text-align:center;
+color:#FFF;
+text-decoration:none;
+line-height:43px;
+font-family:'Oswald', Helvetica;
+display: block;
+margin: 30px;
+font-size: 50px; 
 }
 .push_button:before {
-	background:#f0f0f0;
-	background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#D0D0D0), to(#f0f0f0));
-	
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	border-radius:5px;
-	
-	-webkit-box-shadow:0 1px 2px rgba(0, 0, 0, .5) inset, 0 1px 0 #FFF; 
-	-moz-box-shadow:0 1px 2px rgba(0, 0, 0, .5) inset, 0 1px 0 #FFF; 
-	box-shadow:0 1px 2px rgba(0, 0, 0, .5) inset, 0 1px 0 #FFF;
-	
-	position: absolute;
-	content: "";
-	left: -6px; right: -6px;
-	top: -6px; bottom: -10px;
-	z-index: -1;
+background:#f0f0f0;
+background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#D0D0D0), to(#f0f0f0));
+
+-webkit-border-radius:5px;
+-moz-border-radius:5px;
+border-radius:5px;
+
+-webkit-box-shadow:0 1px 2px rgba(0, 0, 0, .5) inset, 0 1px 0 #FFF; 
+-moz-box-shadow:0 1px 2px rgba(0, 0, 0, .5) inset, 0 1px 0 #FFF; 
+box-shadow:0 1px 2px rgba(0, 0, 0, .5) inset, 0 1px 0 #FFF;
+
+position: absolute;
+content: "";
+left: -6px; right: -6px;
+top: -6px; bottom: -10px;
+z-index: -1;
 }
 
 .push_button:active {
@@ -289,37 +265,53 @@ ul.semaforo {
 	top:5px;
 }
 .push_button:active:before{
-	top: -11px;
-	bottom: -5px;
-	content: "";
+top: -11px;
+bottom: -5px;
+content: "";
 }
 
 .red {
-	text-shadow:-1px -1px 0 #A84155;
-	background: #f00606;
-	border:1px solid #ce0101;
-	
-	background-image:-webkit-linear-gradient(top, #fa001d, #da314f);
-	background-image:-moz-linear-gradient(top, #f70421, #b4253f);
-	background-image:-ms-linear-gradient(top, #f1021e, #bb2440);
-	background-image:-o-linear-gradient(top, #e6031e, #b82640);
-	background-image:linear-gradient(to bottom, #e4021c, #a3223a);
-	
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	border-radius:5px;
-	
-	-webkit-box-shadow:0 1px 0 rgba(255, 255, 255, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset, 0 4px 0 #AD4257, 0 4px 2px rgba(0, 0, 0, .5);
-	-moz-box-shadow:0 1px 0 rgba(255, 255, 255, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset, 0 4px 0 #AD4257, 0 4px 2px rgba(0, 0, 0, .5);
-	box-shadow:0 1px 0 rgba(255, 255, 255, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset, 0 4px 0 #AD4257, 0 4px 2px rgba(0, 0, 0, .5);
+text-shadow:-1px -1px 0 #A84155;
+background: #f00606;
+border:1px solid #ce0101;
+
+background-image:-webkit-linear-gradient(top, #fa001d, #da314f);
+background-image:-moz-linear-gradient(top, #f70421, #b4253f);
+background-image:-ms-linear-gradient(top, #f1021e, #bb2440);
+background-image:-o-linear-gradient(top, #e6031e, #b82640);
+background-image:linear-gradient(to bottom, #e4021c, #a3223a);
+
+-webkit-border-radius:5px;
+-moz-border-radius:5px;
+border-radius:5px;
+
+-webkit-box-shadow:0 1px 0 rgba(255, 255, 255, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset, 0 4px 0 #AD4257, 0 4px 2px rgba(0, 0, 0, .5);
+-moz-box-shadow:0 1px 0 rgba(255, 255, 255, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset, 0 4px 0 #AD4257, 0 4px 2px rgba(0, 0, 0, .5);
+box-shadow:0 1px 0 rgba(255, 255, 255, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset, 0 4px 0 #AD4257, 0 4px 2px rgba(0, 0, 0, .5);
 }
 
 .red:hover {
-	background: #F66C7B;
-	background-image:-webkit-linear-gradient(top, #D25068, #F66C7B);
-	background-image:-moz-linear-gradient(top, #D25068, #F66C7B);
-	background-image:-ms-linear-gradient(top, #D25068, #F66C7B);
-	background-image:-o-linear-gradient(top, #D25068, #F66C7B);
-	background-image:linear-gradient(top, #D25068, #F66C7B);
+background: #F66C7B;
+background-image:-webkit-linear-gradient(top, #D25068, #F66C7B);
+background-image:-moz-linear-gradient(top, #D25068, #F66C7B);
+background-image:-ms-linear-gradient(top, #D25068, #F66C7B);
+background-image:-o-linear-gradient(top, #D25068, #F66C7B);
+background-image:linear-gradient(top, #D25068, #F66C7B);
+}
+
+
+/* ESTILOS DE TROFEO */
+.trofeo{ 
+width: 300px;
+height: auto;
+margin-left: 50%;
+transform: translateX(-50%);
+position: relative;
+}
+.trofeo img{
+width: 200px;
+height: auto;
+margin-left: 50%;
+transform: translateX(-50%);
 }
 

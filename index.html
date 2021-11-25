@@ -13,64 +13,62 @@
         <li></li>
         <li></li>
         <li></li>
-        </ul>
-       
-      
+      </ul>      
     </div>
    
     
     <!-- FORMULARIO PARA SELECCIONAR NUMERO DE PILOTOS-->
-    <form id="formularioJuego" action="#">
+    <form id="formularioJuego" class="formularioJuego" action="#">
         <div style="width: 300px;">
-          <label for="formularioJuego">Numero de pilotos</label>
-  
-        
-          <select name="players" id="numJugadoresSelect">
-            <option value="1">One</option>
-            <option value="2" selected>Two</option>
-            <option value="3">Three</option>
-            <option value="4">Four</option>
-            <option value="5">Five</option>
-            <option value="6">Six</option>
-            <option value="7">Seven</option>
-            <option value="8">Eight</option>
-            <option value="9">Nine</option>
-          </select>
+            <label for="formularioJuego">Numero de pilotos</label>        
+            <select name="players" class="numJugadoresSelect" id="numJugadoresSelect">
+              <option class="option" value="2" selected>2</option>
+              <option class="option" value="3">3</option>
+              <option class="option" value="4">4</option>
+              <option class="option" value="5">5</option>
+              <option class="option" value="6">6</option>
+              <option class="option" value="7">7</option>
+              <option class="option" value="8">8</option>
+            </select>
         </div>
   
         <div>
-          <label for="puntosParaGanar">Puntos para ganar</label>  
-         
-          <input type="number" name="score-to-win" id="puntosParaGanar" value="100" min="1" max="100" />
-        </div>
-  
+          <label for="puntosParaGanar">Puntos para ganar</label>           
+          <input style="width: 35px;" type="text" name="score-to-win" class="puntosParaGanar" id="puntosParaGanar" value="100"/>
+        </div>  
         
+        <!-- Boton go para iniciar carrera -->
         <div id="botonGO"  class="positionBotonGO hidden">
           <button class="push_button red " id="submit-btn" type="submit">GO!</button>  
         </div>
+
         <button class="botonJuego" id="reset-btn" type="reset" hidden>REINICIAR</button>
      </form>
+     <!-- Boton que activa la animacion del semaforo -->
      <button class="botonJuego " id="botonComenzar">COMENZAR</button>
   
       <!-- Parrilla de los coches -->
-      <ul id="parrillaJuego">
+      <ul class="parrillaJuego" id="parrillaJuego">
        
       </ul>
-  
+      <!-- Trofeo que aparece encima de la tabla de resultados -->
+      <div class="trofeo hidden" id="trofeo">
+        <img src="img/trofeo.png" alt="">
+      </div>
+
       <!-- Resultados de juego-->
-     <table id="resultadoJuego" hidden>
+     <table class="resultadoJuego" id="resultadoJuego" hidden>
         <thead>
           <tr>
-            <th>Piloto</th>
-            <th>Puntos</th>
+            <th>Piloto numero:</th>
+            <th>Puntuación</th>
           </tr>
-        </thead>
-  
+        </thead>  
         <tbody>
        
         </tbody>
-      </table> -->
+    </table> -->
   
-      <script src="js/script.js" defer></script> 
+      <script src="js/script.js"></script> 
 </body>
 </html>

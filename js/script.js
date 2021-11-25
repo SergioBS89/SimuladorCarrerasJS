@@ -1,73 +1,48 @@
-'use strict';
 
+// Variables que señalan a los principales elementos del index
 const formularioJuego = document.getElementById('formularioJuego');
 const parrillaJuego = document.getElementById('parrillaJuego');
 const tablaResultados= document.getElementById('resultadoJuego');
 
-const sleepMS = 100;
+formularioJuego.addEventListener('submit', empezarPreventDefault);
+formularioJuego.addEventListener('reset', reiniciarPreventDefault);
 
-let juegoIniciado = false;
-let listaPilotos = [];
+let juegoIniciado = false //Indicamos que el juego no esta iniciado
+let listaPilotos = [] //Array de los pilotos que correran
+const tiempoDistancia = 100 // Variable que indica el valor total del recorrido de los coches
 
+// Funcion que cambia el boton de comenzar por reiniciar
+function cambioBoton() {
+  const botonSubmit = document.getElementById('submit-btn');
+  const botonReinicio = document.getElementById('reset-btn');
 
-
-// funcion para empezar la carrera
-function empezarCarrera() {
-  reiniciarCarrera(true);
-
-  juegoIniciado = true;
-  formButtonToggler();
-
-  crearCochesParrilla();
-
-  aCorrer();
-}
-// funcion que evita controversia con otros eventos
-function empezarPreventDefault(e) {
-  e.preventDefault();
-  empezarCarrera();
-}
-
-
-
-// funcion para reiniciar la carrera
-function reiniciarCarrera(reseteado = false) {
-  juegoIniciado = false;
-  formButtonToggler();
-
-  
-  if (reseteado) {
-   eliminarCochesPista();
-  } else {
-    reiniciarPosiciones();
+  if (juegoIniciado) {
+    botonSubmit.hidden = true;
+    botonReinicio.hidden = false;
+    return;
   }
-
-  reiniciarResultadosTabla();
-}
-// funcion que evita controversia con otros eventos
-function reiniciarPreventDefault(e) {
-  e.preventDefault();
-  reiniciarCarrera();
+  botonSubmit.hidden = false;
+  botonReinicio.hidden = true;
 }
 
+// Funcion que obtine los coches quer van a correr
+function getNumeroCoches() {
+  return Number(document.getElementById('numJugadoresSelect').value);
+}
 
+// Funcion que obtiene el valor de puntos seleccionado
+function getpuntosVencedor() {
+  return Number(document.getElementById('puntosParaGanar').value);
+}
 
-// Crea el circuito con los coches seleccionados
-
+// Funcion que genera los carriles, los coches, la linea de meta y los nombres de cada piloto
 function crearCochesParrilla() {
   listaPilotos = [];
-
   const numeroCoches = getNumeroCoches()
-
-
   for (let index = 1; index < numeroCoches + 1; index++) {
     const imagenesCoches = `img/car${index}.png`;
-
-    // Step 2
     listaPilotos.push({ numeroPilotoID: index, score: 0, imagenesCoches });
   }
-
-
   listaPilotos.forEach((piloto) => {
     const contenedorCoches = document.createElement('li');
     contenedorCoches.classList.add('contenedor-coches');
@@ -102,62 +77,59 @@ function crearCochesParrilla() {
   });
 }
 
+// Funcion que genera aleatoriamente la velocidad del coche
+function velocidad() {
+  const randomNumero_1_10 = Math.floor(Math.random() * 10) + 1;
+  return randomNumero_1_10;
+}
+
+
+// Funcion que elimina todo el contenedor del circuito
 function eliminarCochesPista() {
   parrillaJuego.innerHTML = '';
 }
 
-function reiniciarPosiciones() {
-  for (const piloto of listaPilotos) {
-    const pilotoElement = document.getElementById(
-      `piloto-${piloto.numeroPilotoID}`
-    );
-
-    moverPilotoHacia(piloto, '0%');
-  }
+// Funcion que retorna una promesa con el tiempo de los coches
+function tiempo(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+// Funcion que espera la promesa anterior, obtenida, se ejecutara la carrera
 async function aCorrer() {
 
   let ganador = undefined;
   const puntosVencedor = getpuntosVencedor();
-
   ganadorLoop: while (!ganador) {
     for (const piloto of listaPilotos) {
-      await sleep(sleepMS);
-
+      await tiempo(tiempoDistancia);
       const pilotoElement = document.getElementById(
         `piloto-${piloto.numeroPilotoID}`
       );
 
-      const ventajaCoche = calcularVentaja();
-
+      const ventajaCoche = velocidad();
       piloto.score += ventajaCoche;
 
       if (piloto.score > puntosVencedor) {
         piloto.score = puntosVencedor;
-      }
-
-  
+      }  
       moverPilotoHacia(piloto, `${piloto.score}%`);
-
-
       if (piloto.score >= puntosVencedor) {
         ganador = piloto;
         break ganadorLoop;
       }
     }
   }
-
   crearTablaResultados();
 }
 
+// Funcion que desplaza los coches con animate
 function moverPilotoHacia(piloto, posicion) {
   const pilotoElement = document.getElementById(
     `piloto-${piloto.numeroPilotoID}`
   );
 
   pilotoElement.animate([{ marginLeft: posicion}], {
-    duration: sleepMS,
+    duration: tiempoDistancia,
     easing: 'ease-in-out',
     fill: 'both',
   }).onfinish = () => {
@@ -165,8 +137,13 @@ function moverPilotoHacia(piloto, posicion) {
   };
 }
 
+// Funcion que genera la table de resultados
 function crearTablaResultados() {
   tablaResultados.hidden = false;
+
+   //Trofeo resultado final
+ const trofeo = document.getElementById('trofeo')
+ trofeo.classList.remove('hidden')
 
   const pilotosOrdenadosPorPuntos = listaPilotos.sort(function (a, b) {
     return a.score - b.score;
@@ -182,50 +159,47 @@ function crearTablaResultados() {
     const puntosPilotoTabla = columna.insertCell();
     puntosPilotoTabla.textContent = piloto.score;
   }
+ 
 }
-
+// Funcion para reieniciar la tabla con los resultados 
 function reiniciarResultadosTabla() {
   tablaResultados.hidden = true;
-
   tablaResultados.getElementsByTagName('tbody')[0].innerHTML = '';
 }
 
-function formButtonToggler() {
-  const gameFormSubmitButton = document.getElementById('submit-btn');
-  const gameFormResetButton = document.getElementById('reset-btn');
-
-  if (juegoIniciado) {
-    gameFormSubmitButton.hidden = true;
-    gameFormResetButton.hidden = false;
-    return;
-  }
-
-  gameFormSubmitButton.hidden = false;
-  gameFormResetButton.hidden = true;
+// funcion para empezar la carrera que llama a las diferentes funciones necesarias 
+function empezarCarrera() {
+  reiniciarCarrera(true)
+  juegoIniciado = true
+  cambioBoton() //Cambia el boton de comenzar por reiniciar
+  crearCochesParrilla()
+  aCorrer()
 }
 
-function getNumeroCoches() {
-  return Number(document.getElementById('numJugadoresSelect').value);
-}
-
-function getpuntosVencedor() {
-  return Number(document.getElementById('puntosParaGanar').value);
+// funcion que evita controversia con otros eventos
+function empezarPreventDefault(e) {
+  e.preventDefault();
+  empezarCarrera();
 }
 
 
-function calcularVentaja() {
-  const randomNumero_1_10 = Math.floor(Math.random() * 10) + 1;
-
-  return randomNumero_1_10;
+// funcion para reiniciar la carrera
+function reiniciarCarrera() {
+  juegoIniciado = false;
+  cambioBoton();
+  eliminarCochesPista()
+  // trofeo de la tabla resultados, la agrego la clase hidden
+  const trofeo = document.getElementById('trofeo')
+  trofeo.classList.add('hidden')
+  reiniciarResultadosTabla();
 }
 
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+// funcion que evita controversia con otros eventos
+function reiniciarPreventDefault(e) {
+  e.preventDefault();
+  reiniciarCarrera();
 }
 
-formularioJuego.addEventListener('submit', empezarPreventDefault);
-
-formularioJuego.addEventListener('reset', reiniciarPreventDefault);
 
 
 
@@ -249,5 +223,7 @@ botonComezar.addEventListener('click',()=>{
 botonReiniciar.addEventListener('click',()=>{
   botonComezar.classList.remove('hidden')
 })
+
+
 
 
